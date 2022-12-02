@@ -51,21 +51,10 @@ int	mouse_hook(int keycode, int x, int y, void *param)
 	(void) x;
 	(void) y;
 	wireframe = (t_wireframe *) param;
-	if (keycode == MOUSE_SCROLL_UP && !(wireframe->properties.altitude > -1
-			&& wireframe->properties.altitude < 1))
-	{
-		wireframe->properties.altitude += wireframe->properties.altitude
-			/ abs(wireframe->properties.altitude);
+	if (keycode == MOUSE_SCROLL_UP)
 		wireframe->properties.distance += 1;
-	}
-	if (keycode == MOUSE_SCROLL_DOWN && !(wireframe->properties.altitude >= -1
-			&& wireframe->properties.altitude <= 1))
-	{
-		if (wireframe->properties.distance >= 1)
-			wireframe->properties.distance -= 1;
-		wireframe->properties.altitude -= wireframe->properties.altitude
-			/ abs(wireframe->properties.altitude);
-	}
+	if (keycode == MOUSE_SCROLL_DOWN && wireframe->properties.distance >= 2)
+		wireframe->properties.distance -= 1;
 	if (!draw_map(wireframe))
 		close_window(wireframe, EXIT_FAILURE);
 	return (1);
