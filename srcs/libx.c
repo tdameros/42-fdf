@@ -12,6 +12,15 @@
 
 #include "libx.h"
 
+static void	libx_put_line_dx_greater(t_img *image,
+				t_point point1, t_point point2, int color);
+static void	libx_put_line_dy_greater(t_img *image,
+				t_point point1, t_point point2, int color);
+
+/**
+ * Create mlx image in structure with all data.
+ * @return t_img struct allocated or NULL if there is an error
+ */
 t_img	*libx_create_image(void *mlx_ptr, int width, int height)
 {
 	t_img	*image;
@@ -27,6 +36,9 @@ t_img	*libx_create_image(void *mlx_ptr, int width, int height)
 	return (image);
 }
 
+/**
+ * Put a pixel in mlx image (protected if the pixel is outside the image).
+ */
 void	libx_put_pixel(t_img *image, t_point point, int color)
 {
 	char	*dst;
@@ -39,6 +51,10 @@ void	libx_put_pixel(t_img *image, t_point point, int color)
 	*(unsigned int *) dst = color;
 }
 
+/**
+ * Put a line between 2 points in mlx image.
+ * (protected if there are pixels is outside the image)
+ */
 void	libx_put_line(t_img *image, t_point point1, t_point point2, int color)
 {
 	double	dx;
@@ -52,8 +68,12 @@ void	libx_put_line(t_img *image, t_point point1, t_point point2, int color)
 		libx_put_line_dy_greater(image, point1, point2, color);
 }
 
-void	libx_put_line_dx_greater(t_img *image, t_point point1, t_point point2,
-								int color)
+/**
+ * Put a line between 2 points in mlx image if dx is greater.
+ * (protected if there are pixels is outside the image)
+ */
+static void	libx_put_line_dx_greater(t_img *image,
+									t_point point1, t_point point2, int color)
 {
 	const double	dx = fabs((double) point2.x - point1.x);
 	const double	dy = fabs((double) point2.y - point1.y);
@@ -82,8 +102,12 @@ void	libx_put_line_dx_greater(t_img *image, t_point point1, t_point point2,
 	}
 }
 
-void	libx_put_line_dy_greater(t_img *image, t_point point1, t_point point2,
-								int color)
+/**
+ * Put a line between 2 points in mlx image if dy is greater.
+ * (protected if there are pixels is outside the image)
+ */
+static void	libx_put_line_dy_greater(t_img *image,
+									t_point point1, t_point point2, int color)
 {
 	const double	dx = fabs((double) point2.x - point1.x);
 	const double	dy = fabs((double) point2.y - point1.y);

@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		}
 		mlx_hook(wireframe->win_ptr, 2, (1L << 0), keyboard_loop, wireframe);
+		mlx_hook(wireframe->win_ptr, 17, (1L << 3), close_icon, wireframe);
 		mlx_mouse_hook(wireframe->win_ptr, mouse_hook, wireframe);
 		if (!draw_map(wireframe))
 			close_window(wireframe, EXIT_FAILURE);
@@ -50,11 +51,21 @@ int	mouse_hook(int keycode, int x, int y, void *param)
 	(void) x;
 	(void) y;
 	wireframe = (t_wireframe *) param;
-	if (keycode == 5)
+	if (keycode == MOUSE_SCROLL_UP && !(wireframe->properties.altitude > -1
+			&& wireframe->properties.altitude < 1))
+	{
+		wireframe->properties.altitude += wireframe->properties.altitude
+			/ abs(wireframe->properties.altitude);
 		wireframe->properties.distance += 1;
-	if (keycode == 4)
+	}
+	if (keycode == MOUSE_SCROLL_DOWN && !(wireframe->properties.altitude >= -1
+			&& wireframe->properties.altitude <= 1))
+	{
 		if (wireframe->properties.distance >= 1)
 			wireframe->properties.distance -= 1;
+		wireframe->properties.altitude -= wireframe->properties.altitude
+			/ abs(wireframe->properties.altitude);
+	}
 	if (!draw_map(wireframe))
 		close_window(wireframe, EXIT_FAILURE);
 	return (1);
@@ -82,6 +93,15 @@ int	keyboard_loop(int keycode, void *param)
 	return (1);
 }
 
+int	close_icon(void *param)
+{
+	close_window(param, EXIT_SUCCESS);
+	return (1);
+}
+
+/**
+ * Free all data in wireframe struct and exit this program.
+ */
 void	close_window(t_wireframe *wireframe, int exit_code)
 {
 	free_int_tab(wireframe->map->map, wireframe->map->height);

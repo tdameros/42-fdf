@@ -12,12 +12,20 @@
 
 #include "errors.h"
 
+/**
+ * Print allocation error message in stderr.
+ * @return NULL
+ */
 void	*raise_allocation_error(void)
 {
 	ft_putendl_fd("Error encountered during a memory allocation.", 1);
 	return (NULL);
 }
 
+/**
+ * Print invalid map error message in stderr.
+ * @return NULL
+ */
 void	*raise_invalid_map_error(void)
 {
 	ft_putendl_fd("Error encountered during parsing. "
@@ -25,6 +33,10 @@ void	*raise_invalid_map_error(void)
 	return (NULL);
 }
 
+/**
+ * Print file error message in stderr.
+ * @return NULL
+ */
 void	*raise_file_error(void)
 {
 	ft_putendl_fd("Error encountered while reading the file. "

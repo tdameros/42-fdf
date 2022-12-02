@@ -12,6 +12,9 @@
 
 #include "wireframe.h"
 
+/**
+ * Initialize a t_properties struct with default values for wireframe.
+ */
 t_properties	get_default_properties(t_map *map)
 {
 	t_properties	properties;
@@ -26,9 +29,13 @@ t_properties	get_default_properties(t_map *map)
 	properties.distance = DISTANCE;
 	properties.view = VIEW;
 	properties.color = MAP_COLOR;
+	properties.zoom = 1.0;
 	return (properties);
 }
 
+/**
+ * @return max altitude in a t_map struct
+ */
 int	get_max_altitude(t_map *map)
 {
 	size_t	x;
@@ -52,6 +59,12 @@ int	get_max_altitude(t_map *map)
 	return (max);
 }
 
+/**
+ * Create t_wireframe struct with default properties and mlx settings.
+ * @param map wireframe map (already parse)
+ * @param name_window (mlx window)
+ * @return t_wireframe struct allocated or NULL if there is an error
+ */
 t_wireframe	*create_wireframe(t_map *map, char *name_window)
 {
 	t_wireframe		*manager;

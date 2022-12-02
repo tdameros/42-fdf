@@ -12,6 +12,10 @@
 
 #include "drawer.h"
 
+/**
+ * Draw wireframe map and delete the previous image in the window.
+ * @return 1 if the map is correctly draw else 0
+ */
 int	draw_map(t_wireframe *wireframe)
 {
 	t_map			*map;
@@ -41,6 +45,10 @@ int	draw_map(t_wireframe *wireframe)
 	return (1);
 }
 
+/**
+ * Draw properties in top right of the window.
+ * @return 1 if properties are correctly draw else 0
+ */
 int	draw_properties_info(t_wireframe *wireframe)
 {
 	const t_properties	properties = wireframe->properties;
@@ -50,15 +58,15 @@ int	draw_properties_info(t_wireframe *wireframe)
 	count += draw_int(wireframe, 900, 50, properties.origin_point.x);
 	count += draw_int(wireframe, 950, 50, properties.origin_point.y);
 	mlx_string_put(wireframe->mlx_ptr, wireframe->win_ptr, 820, 50,
-		0x00FFFFFF, "Origin:");
+		FONT_COLOR, "Origin:");
 	mlx_string_put(wireframe->mlx_ptr, wireframe->win_ptr, 820, 80,
-		0x00FFFFFF, "Altitude:");
+		FONT_COLOR, "Altitude:");
 	count += draw_int(wireframe, 950, 80, properties.altitude);
 	mlx_string_put(wireframe->mlx_ptr, wireframe->win_ptr, 820, 110,
-		0x00FFFFFF, "Distance:");
+		FONT_COLOR, "Distance:");
 	count += draw_int(wireframe, 950, 110, properties.distance);
 	mlx_string_put(wireframe->mlx_ptr, wireframe->win_ptr, 820, 140,
-		0x00FFFFFF, "View:");
+		FONT_COLOR, "View:");
 	count += draw_int(wireframe, 950, 140, properties.view);
 	if (count != 5)
 	{
@@ -68,6 +76,10 @@ int	draw_properties_info(t_wireframe *wireframe)
 	return (1);
 }
 
+/**
+ * Draw shortcuts in top left of the window.
+ * @return 1 if properties are correctly draw else 0
+ */
 void	draw_shortcuts_info(t_wireframe *wireframe)
 {
 	mlx_string_put(wireframe->mlx_ptr, wireframe->win_ptr,

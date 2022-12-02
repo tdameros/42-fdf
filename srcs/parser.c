@@ -20,9 +20,14 @@
 t_map	*parse_map(char *file)
 {
 	int		fd;
+	size_t	file_len;
 	t_list	*split_lines;
 	t_map	*map;
 
+	file_len = ft_strlen(file);
+	if (file_len < 4 || file[file_len - 1] != 'f' || file[file_len - 2] != 'd'
+		|| file[file_len - 3] != 'f' || file[file_len - 4] != '.')
+		return (raise_file_error());
 	fd = open(file, O_DIRECTORY);
 	if (fd > 0)
 		return (close(fd), raise_file_error());

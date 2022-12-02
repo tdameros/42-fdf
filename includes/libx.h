@@ -35,9 +35,5 @@ typedef struct s_img {
 t_img	*libx_create_image(void *mlx_ptr, int width, int height);
 void	libx_put_pixel(t_img *image, t_point point, int color);
 void	libx_put_line(t_img *image, t_point point1, t_point point2, int color);
-void	libx_put_line_dx_greater(t_img *image, t_point point1, t_point point2,
-			int color);
-void	libx_put_line_dy_greater(t_img *image, t_point point1, t_point point2,
-			int color);
 
 #endif

@@ -12,6 +12,10 @@
 
 #include "drawer.h"
 
+/**
+ * Draw wireframe map column in the mlx image.
+ * @param x index of the column
+ */
 void	draw_column(t_map *map, t_properties properties, t_img *image, size_t x)
 {
 	size_t	y;
@@ -37,6 +41,11 @@ void	draw_column(t_map *map, t_properties properties, t_img *image, size_t x)
 	}
 }
 
+/**
+ * Get image coordinates with wireframe map index.
+ * @param x column index
+ * @param y row index
+ */
 t_point	get_image_coord(size_t x, size_t y, size_t height,
 						t_properties properties)
 {
@@ -61,6 +70,10 @@ double	degree_to_radian(double degree)
 	return (((2 * M_PI) / 360) * degree);
 }
 
+/**
+ * Draw int value in window.
+ * @return 1 if properties are correctly draw else 0
+ */
 int	draw_int(t_wireframe *wireframe, int x, int y, int number)
 {
 	char	*conversion;
