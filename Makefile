@@ -75,11 +75,6 @@ mlx:
 libft:
 	$(MAKE) -C $(DIR_LIBFT)
 
-.PHONY: run
-run: all
-	./fdf test_maps/pylone.fdf
-
-
 .PHONY: clean
 clean:
 				$(MAKE) -C $(DIR_LIBFT) clean
