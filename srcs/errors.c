@@ -18,7 +18,7 @@
  */
 void	*raise_allocation_error(void)
 {
-	ft_putendl_fd("Error encountered during a memory allocation.", 1);
+	ft_putendl_fd("Error encountered during an allocation.", STDERR_FILENO);
 	return (NULL);
 }
 
@@ -29,7 +29,7 @@ void	*raise_allocation_error(void)
 void	*raise_invalid_map_error(void)
 {
 	ft_putendl_fd("Error encountered during parsing. "
-		"Please use *.fdf file with valid size.", 1);
+		"Please use *.fdf file with valid size.", STDERR_FILENO);
 	return (NULL);
 }
 
@@ -40,6 +40,6 @@ void	*raise_invalid_map_error(void)
 void	*raise_file_error(void)
 {
 	ft_putendl_fd("Error encountered while reading the file. "
-		"Please use *.fdf file with read permissions.", 1);
+		"Please use *.fdf file with read permissions.", STDERR_FILENO);
 	return (NULL);
 }
