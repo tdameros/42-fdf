@@ -14,7 +14,7 @@ a result, be better prepared.
 _FDF is short for ’fil de fer’ in French which means ’wireframe
 model’._
 
-The program represent the model in isometric projection.
+The program represents a model in isometric projection.
 
 ## Compatibility
 
