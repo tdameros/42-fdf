@@ -1,8 +1,8 @@
-# 42 FDF Project
+# FDF Project
 
 _FDF is short for ’fil de fer’ in French which means ’wireframe model’._
 
-This is the FDF project for the 42 school. The goal of this project is to create a 3D wireframe model of a landscape given a file containing the altitude of each point.
+The goal of this project is to create a 3D wireframe model of a landscape given a file containing the altitude of each point.
 
 The wireframe is projected onto a 2D plane using an isometric projection.
 
